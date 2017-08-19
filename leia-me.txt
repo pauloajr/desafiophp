@@ -1,0 +1,38 @@
+Laravel 5.4 com postgre 9.2
+
+Usado wampserver, configurado .env da raiz
+Configurar alias localhost/desafio para desafio/public
+Tabelas
+CREATE TABLE endereco
+(
+  id serial NOT NULL,
+  logradouro character varying(255) NOT NULL,
+  numero character varying(45) NOT NULL,
+  bairro character varying(255) NOT NULL,
+  CONSTRAINT primariaend PRIMARY KEY (id)
+);
+
+CREATE TABLE aluno
+(
+  id serial NOT NULL,
+  nome character varying(255) NOT NULL,
+  matricula character varying(10) NOT NULL,
+  cpf character varying(11) NOT NULL,
+  endereco_int serial,
+  CONSTRAINT primariaaluno PRIMARY KEY (id),
+  CONSTRAINT fk_aluno_endereco_idx FOREIGN KEY (endereco_int)
+      REFERENCES endereco (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT cpf UNIQUE (cpf)
+ );
+ 
+CREATE TABLE nota
+(
+  id serial NOT NULL,
+  valor double precision,
+  aluno_id serial NOT NULL,
+  CONSTRAINT primarianota PRIMARY KEY (id),
+  CONSTRAINT nota_aluno_id_fkey FOREIGN KEY (aluno_id)
+      REFERENCES aluno (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
