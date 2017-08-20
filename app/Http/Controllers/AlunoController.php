@@ -48,7 +48,7 @@ class AlunoController extends Controller
 		
 		$validator = Validator::make(
 		[
-		'nome' => $descricao,
+		'nome' => $nome,
 		'cpf' => $cpf,
 		'matricula' => $matricula,
 		'rua' => $rua,
@@ -56,12 +56,12 @@ class AlunoController extends Controller
 		'bairro' => $bairro		
 		],
 		[
-		'nome' => 'required|min:5',
+		'nome' => 'required|min:1',
 		'cpf' => 'required|numeric',
-		'matricula' => 'required|min:6',
+		'matricula' => 'required|min:1',
 		'num' => 'required|numeric',
-		'rua' => 'required|min:6',
-		'bairro' => 'required|min:6'
+		'rua' => 'required|min:1',
+		'bairro' => 'required|min:1'
 		]
 		);
 		
@@ -131,7 +131,7 @@ class AlunoController extends Controller
 		
 		$validator = Validator::make(
 		[
-		'nome' => $descricao,
+		'nome' => $nome,
 		'cpf' => $cpf,
 		'matricula' => $matricula,
 		'rua' => $rua,
@@ -139,12 +139,12 @@ class AlunoController extends Controller
 		'bairro' => $bairro		
 		],
 		[
-		'nome' => 'required|min:5',
+		'nome' => 'required|min:1',
 		'cpf' => 'required|numeric',
-		'matricula' => 'required|min:6',
+		'matricula' => 'required|min:1',
 		'num' => 'required|numeric',
-		'rua' => 'required|min:6',
-		'bairro' => 'required|min:6'
+		'rua' => 'required|min:1',
+		'bairro' => 'required|min:1'
 		]
 		);
 		

@@ -66,7 +66,7 @@
       </tr>
       <tr>
         <td>Nota</td>
-        <td id="nota"><?php 
+        <td id="nota"><label for="textarea"></label><?php 
 		$i = 0;
 		if(!empty($notas))
 		foreach($notas as $valor){
