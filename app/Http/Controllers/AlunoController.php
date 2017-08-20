@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Aluno;
 use App\Endereco;
 use App\Nota;
+use Validator;
 
 class AlunoController extends Controller
 {
@@ -44,6 +45,29 @@ class AlunoController extends Controller
 		$rua = Request::input('rua');
 		$num = Request::input('numero');
 		$bairro = Request::input('bairro');
+		
+		$validator = Validator::make(
+		[
+		'nome' => $descricao,
+		'cpf' => $cpf,
+		'matricula' => $matricula,
+		'rua' => $rua,
+		'num' => $num,
+		'bairro' => $bairro		
+		],
+		[
+		'nome' => 'required|min:5',
+		'cpf' => 'required|numeric',
+		'matricula' => 'required|min:6',
+		'num' => 'required|numeric',
+		'rua' => 'required|min:6',
+		'bairro' => 'required|min:6'
+		]
+		);
+		
+		if($validator->fails()){
+			return 'Houve erro';
+		}
 			
 		$novoEnd = new Endereco();
 		$novoEnd->logradouro = $rua;
@@ -104,6 +128,29 @@ class AlunoController extends Controller
 		$rua = Request::input('rua');
 		$num = Request::input('numero');
 		$bairro = Request::input('bairro');
+		
+		$validator = Validator::make(
+		[
+		'nome' => $descricao,
+		'cpf' => $cpf,
+		'matricula' => $matricula,
+		'rua' => $rua,
+		'num' => $num,
+		'bairro' => $bairro		
+		],
+		[
+		'nome' => 'required|min:5',
+		'cpf' => 'required|numeric',
+		'matricula' => 'required|min:6',
+		'num' => 'required|numeric',
+		'rua' => 'required|min:6',
+		'bairro' => 'required|min:6'
+		]
+		);
+		
+		if($validator->fails()){
+			return 'Houve erro';
+		}
 		
 		$novoAluno = Aluno::find($id);
 		$novoAluno->nome = $nome;

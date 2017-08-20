@@ -45,7 +45,7 @@
     <?php 
 	if(!empty($aluno->nome)){
 	?>
-    <form action="{{action('AlunoController@editar')}}" method="post">
+    <form action="{{action('AlunoController@editar')}}" method="post" onsubmit="return validar(this)">
     <input type="hidden" name="_token" value="{{{csrf_token()}}}">
     <input type="hidden" name="id" value="{{$aluno->id}}" />
     <table width="100%" class="table" id="dados">
@@ -106,6 +106,44 @@
   </div>
 </div>
 <script language="javascript">
+function validar(nomeform){
+	if(nomeform.nome.value == ''){
+		alert ("Por favor digite o seu nome.");
+        return false;
+	}
+	if (nomeform.cpf.value=="")
+    {
+        alert ("Por favor digite o cpf.");
+        return false;
+    }
+    if (nomeform.cpf.value.length != 11) 
+	{
+	    alert ("Por favor digite o seu cpf completo.");
+        return false;
+	}
+	if(nomeform.matricula.value == ''){
+		alert ("Por favor digite a sua matrícula.");
+        return false;
+	}
+	if(nomeform.rua.value == ''){
+		alert ("Por favor digite a sua rua.");
+        return false;
+	}
+	if(nomeform.numero.value == ''){
+		alert ("Por favor digite o seu numero.");
+        return false;
+	}
+	if(nomeform.bairro.value == ''){
+		alert ("Por favor digite o seu bairro.");
+        return false;
+	}
+	if(document.getElementById("nota").children.length < 2){
+		alert ("Por favor adicione pelo menos uma nota.");
+        return false;
+	}
+	return true;
+}
+
 function apagar(url){
 	if(window.confirm('Deseja realmente apagar?')){
 		window.location = url;
