@@ -2,6 +2,9 @@ Laravel 5.4 com postgre 9.2
 
 Usado wampserver, configurado .env da raiz
 Configurar alias localhost/desafio para desafio/public
+editar .env.exemplo para .env
+
+
 Tabelas
 CREATE TABLE endereco
 (

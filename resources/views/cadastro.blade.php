@@ -30,7 +30,7 @@
 </ul>
 <div class="panel panel-default">
   <div class="panel-body">
-    <form action="{{action('AlunoController@cadasalvo')}}" method="post">
+    <form action="{{action('AlunoController@cadasalvo')}}" method="post" onsubmit="return validar(this)">
 	<input type="hidden" name="_token" value="{{{csrf_token()}}}">
     <table width="100%" class="table">
       <tr>
@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <td>CPF</td>
-        <td><input type="text" name="cpf" class="form-control"></td>
+        <td><input type="number" name="cpf" class="form-control"></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
@@ -60,7 +60,7 @@
       </tr>
       <tr>
         <td>Numero</td>
-        <td><input type="text" name="numero" class="form-control"></td>
+        <td><input type="number" name="numero" class="form-control"></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
@@ -77,6 +77,44 @@
   </div>
 </div>
 <script language="javascript">
+function validar(nomeform){
+	if(nomeform.nome.value == ''){
+		alert ("Por favor digite o seu nome.");
+        return false;
+	}
+	if (nomeform.cpf.value=="")
+    {
+        alert ("Por favor digite o cpf.");
+        return false;
+    }
+    if (nomeform.cpf.value.length != 11) 
+	{
+	    alert ("Por favor digite o seu cpf completo.");
+        return false;
+	}
+	if(nomeform.matricula.value == ''){
+		alert ("Por favor digite a sua matrícula.");
+        return false;
+	}
+	if(nomeform.rua.value == ''){
+		alert ("Por favor digite a sua rua.");
+        return false;
+	}
+	if(nomeform.numero.value == ''){
+		alert ("Por favor digite o seu numero.");
+        return false;
+	}
+	if(nomeform.bairro.value == ''){
+		alert ("Por favor digite o seu bairro.");
+        return false;
+	}
+	if(document.getElementById("nota").children.length < 2){
+		alert ("Por favor adicione pelo menos uma nota.");
+        return false;
+	}
+	return true;
+}
+
 function excluir(pt){
 document.getElementById(pt).remove();
 }
